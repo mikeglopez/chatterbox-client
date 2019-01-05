@@ -8,8 +8,6 @@ var App = {
     App.username = window.location.search.substr(10);
 
     FormView.initialize();
-    RoomsView.initialize();
-    MessagesView.initialize();
 
     // Fetch initial batch of messages
     App.startSpinner();
@@ -21,6 +19,11 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
+
+      // set up the rooms
+      RoomsView.initialize(data);
+      // set up the messages
+      MessagesView.initialize(data);
 
       callback();
     });

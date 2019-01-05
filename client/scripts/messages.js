@@ -5,6 +5,7 @@ var Messages = {
     var roomname = RoomsView.$select.val();
     Parse.readAll((data) => {
       MessagesView.renderRoomMessages(data, roomname);
+      FriendsView.initialize();
     });
   }
 

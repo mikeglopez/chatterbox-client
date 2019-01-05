@@ -25,6 +25,7 @@ var App = {
       var roomname = $('#rooms option:selected').text();
       // set up the messages
       MessagesView.initialize(data, roomname);
+      FriendsView.initialize();
 
       callback();
     });

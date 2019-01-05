@@ -16,7 +16,7 @@ var MessagesView = {
           // create message object
           message = {
             username: data.results[i].username,
-            text: data.results[i].text,
+            text: MessagesView.escapeHTMLencode(data.results[i].text),
             roomname: data.results[i].roomname
           };
           MessagesView.renderMessage(message);
@@ -28,11 +28,17 @@ var MessagesView = {
   renderMessage: function(message) {
     var html = MessageView.render(message);
     MessagesView.$chats.append(html);
+  },
+
+  // shamelessly stolen from https://sanzon.wordpress.com/2008/05/01/neat-little-html-encoding-trick-in-javascript/
+  escapeHTMLencode: function(text) {
+    var div = document.createElement('div');
+    var insecureText = document.createTextNode(text);
+    div.appendChild(insecureText);
+    return div.innerHTML;
   }
 
 };
-
-
 
 
 

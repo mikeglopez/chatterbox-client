@@ -22,8 +22,9 @@ var App = {
 
       // set up the rooms
       RoomsView.initialize(data);
+      var roomname = $('#rooms option:selected').text();
       // set up the messages
-      MessagesView.initialize(data);
+      MessagesView.initialize(data, roomname);
 
       callback();
     });

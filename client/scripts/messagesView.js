@@ -2,22 +2,25 @@ var MessagesView = {
 
   $chats: $('#chats'),
 
-  initialize: function(data) {
-    MessagesView.renderAllMessages(data);
+  initialize: function(data, roomname) {
+    MessagesView.renderRoomMessages(data, roomname);
   },
 
-  renderAllMessages: function(data, roomname = null) {
+  renderRoomMessages: function(data, roomname = null) {
     // loop over results array
     for (var i = 0; i < data.results.length; i++) {
       // if current element has props: username, text, roomname
       if (data.results[i].hasOwnProperty('username') && data.results[i].hasOwnProperty('text') && data.results[i].hasOwnProperty('roomname')) {
-        // create message object
-        message = {
-          username: data.results[i].username,
-          text: data.results[i].text,
-          roomname: data.results[i].roomname
-        };
-        MessagesView.renderMessage(message);
+        // only render messages that are for the current room
+        if (data.results[i].roomname === roomname) {
+          // create message object
+          message = {
+            username: data.results[i].username,
+            text: data.results[i].text,
+            roomname: data.results[i].roomname
+          };
+          MessagesView.renderMessage(message);
+        }
       }
     }
   },

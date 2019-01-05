@@ -21,8 +21,12 @@ var FormView = {
     var message = {};
     message.username = getUrlVars().username;
     message.text = $('input[name=message]').val(); // pick up here
+    message.roomname = $('#rooms option:selected').text();
 
-    //Parse.create(message);
+    Parse.create(message, function() {
+      console.log('message sent successfully');
+    });
+
     console.log('click!');
   },
 
@@ -32,3 +36,11 @@ var FormView = {
   }
 
 };
+
+/*
+{
+  username: 'shawndrost',
+  text: 'trololo',
+  roomname: '4chan'
+};
+*/

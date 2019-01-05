@@ -8,8 +8,17 @@ var RoomsView = {
     // data[1] === {objectId: "KZJbj0EGOb", username: "shawndrost", roomname: "4chan", text: "howdy", createdAt: "2019-01-05T00:53:14.711Z", …}
     // need to put new method here
     RoomsView.renderRoomDropdown(data);
+    RoomsView.$select.on('change', function () {
+      MessagesView.$chats.html(''); // div with all chats
+      var roomname = $( this ).val();
+      Parse.readAll((data) => {
+        MessagesView.renderRoomMessages(data, roomname);
+      });
+    });
   },
 
+
+  // $(this).text()
   renderRoomDropdown: function(data) {
     html = "";
     roomnames = {};

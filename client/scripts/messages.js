@@ -6,6 +6,7 @@ var Messages = {
     Parse.readRoom(roomname, (data) => {
       MessagesView.renderRoomMessages(data, roomname);
       FriendsView.initialize();
+      RoomsView.renderTab(roomname);
     });
   }
 

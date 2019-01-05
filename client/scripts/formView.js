@@ -26,7 +26,7 @@ var FormView = {
     Parse.create(message, function() {
       console.log('message sent successfully');
     });
-
+    Messages.refresh();
     console.log('click!');
   },
 
